@@ -9,3 +9,4 @@
 10005:securesocial.core.providers.GitHubProvider
 10006:securesocial.core.providers.FoursquareProvider
 10009:securesocial.core.providers.InstagramProvider
+10010:plugins.LinkedInOauth2Provider
