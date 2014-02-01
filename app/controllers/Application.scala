@@ -1,6 +1,6 @@
 package controllers
 
-import _root_.models.Users
+import _root_.models.Tables._
 import play.api._
 import play.api.mvc._
 import securesocial.core.SecureSocial

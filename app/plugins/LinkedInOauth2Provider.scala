@@ -1,9 +1,10 @@
 package plugins
 
 import play.api._
-import securesocial.core.{AuthenticationException, UserId, SocialUser, OAuth2Provider}
+import securesocial.core._
 import play.api.libs.ws.WS
 import LinkedInOauth2Provider._
+import securesocial.core.AuthenticationException
 
 class LinkedInOauth2Provider(application: Application) extends OAuth2Provider(application) {
   val GetAuthenticatedUser = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,formatted-name,picture-url,email-address)?oauth2_access_token=%s"
@@ -25,7 +26,7 @@ class LinkedInOauth2Provider(application: Application) extends OAuth2Provider(ap
           val avatarUrl = Option((me \ AvatarUrl).text).filter(_.trim.nonEmpty)
           val emailAddress = Option((me \ EmailAddress).text).filter(_.trim.nonEmpty)
 
-          user.copy(id = UserId(userId, id),
+          user.copy(identityId = IdentityId(userId, id),
             firstName = firstName,
             lastName = lastName,
             fullName = fullName,

@@ -8,7 +8,6 @@ GET      /                           controllers.Application.index
 # Map static resources from the /public folder to the /assets URL path
 GET      /assets/*file               controllers.Assets.at(path="/public", file)
 
-
 ## SecureSocial
 # Login page
 GET      /login                      securesocial.controllers.LoginPage.login
@@ -30,3 +29,5 @@ POST     /password                   securesocial.controllers.PasswordChange.han
 GET      /authenticate/:provider     securesocial.controllers.ProviderController.authenticate(provider)
 POST     /authenticate/:provider     securesocial.controllers.ProviderController.authenticateByPost(provider)
 GET      /not-authorized             securesocial.controllers.ProviderController.notAuthorized
+
+GET      /webjars/*file                    controllers.WebJarAssets.at(file)
