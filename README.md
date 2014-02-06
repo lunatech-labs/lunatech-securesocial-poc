@@ -39,7 +39,9 @@ Running with OAuth providers:
 Here, we need to use a callback, so we use ngrok to expose the internal service, and don't really need nginx (but it's
 a good habit to use it).
 
-1. Register for any external OAuth services you want to authenticate with.
+1. Register for any external OAuth services you want to authenticate.
+1. Put the oauth credentials into `secrets.conf`. 
+1. Modify `play.plugins` to use the OAuth plugins you registered (a complete list is in `play.plugins.withoauth`).
 1. Download and install nginx (`brew install nginx` if you're on a Mac).
 1. Download and install ngrok from https://ngrok.com -- this allows OAuth callbacks to happen if need be.
 1. Start the play server (as above).
