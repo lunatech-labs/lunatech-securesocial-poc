@@ -1,0 +1,15 @@
+@(u: User)
+
+<tr>
+    <td>
+        @u.avatarUrl.map { aurl =>
+            <img src="@aurl">
+        }
+    </td>
+
+    <td>firstName = "@{u.firstName}", lastName =&nbsp;"@{u.lastName}", fullName = "@{u.fullName}'</td>
+
+    <td>&lt;<a href="mailto:@{u.email}">@{u.email}</a>&gt;</td>
+
+    <td>from @{u.identityId.providerId}</td>
+</tr>
