@@ -6,7 +6,7 @@ in memory H2 database by default.
 [SecureSocial](http://securesocial.ws) is an authentication plugin on [Play](http://playframework.com) that allows users
 to login through a variety of methods, including through OAuth providers.
 
-The blog post is at [blog.lunatech.com/2013/07/04/play-securesocial-slick](blog.lunatech.com/2013/07/04/play-securesocial-slick)
+The blog post is at [http://blog.lunatech.com/2013/07/04/play-securesocial-slick](http://blog.lunatech.com/2013/07/04/play-securesocial-slick)
 
 ## Adding OAuth secret codes
 
