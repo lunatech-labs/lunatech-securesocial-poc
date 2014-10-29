@@ -1,0 +1,81 @@
+<!-- <html> -->
+<head>
+    <title>This is an application to see how to use Play 2/Scala, Slick and SecureSocial together</title>
+</head>
+
+<body>
+<article class="markdown-body entry-content" itemprop="mainContentOfPage"><h1>
+<a name="user-content-securesocial-activator-template" class="anchor" href="#securesocial-activator-template" aria-hidden="true"><span class="octicon octicon-link"></span></a>SecureSocial Activator Template</h1>
+
+<p>This is an application to see how to use Play 2/Scala, Slick and SecureSocial together.  It uses Slick 2.0.0 and an
+in memory H2 database by default.</p>
+
+<p><a href="http://securesocial.ws">SecureSocial</a> is an authentication plugin on <a href="http://playframework.com">Play</a> that allows users
+to login through a variety of methods, including through OAuth providers.</p>
+
+<p>The blog post is at <a href="http://blog.lunatech.com/2013/07/04/play-securesocial-slick">http://blog.lunatech.com/2013/07/04/play-securesocial-slick</a></p>
+
+<h2>
+<a name="user-content-adding-oauth-secret-codes" class="anchor" href="#adding-oauth-secret-codes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding OAuth secret codes</h2>
+
+<p>SecureSocial requires keys and secrets to authenticate with OAuth providers. We obviously can't commit those.
+To add these secrets to your configuration, copy <code>secrets.sample.conf</code> to <code>secrets.conf</code> and fill in the blanks.
+The <code>secrets.conf</code> file is included from application.conf, and not from <code>securesocial.conf</code>, since it also contains the Play application secret.</p>
+
+<p>Configuration of SecureSocial is at <a href="http://securesocial.ws/guide/configuration.html">http://securesocial.ws/guide/configuration.html</a></p>
+
+<h2>
+<a name="user-content-setup-and-running" class="anchor" href="#setup-and-running" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup and running</h2>
+
+<h3>
+<a name="user-content-common-setup" class="anchor" href="#common-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common setup:</h3>
+
+<ol class="task-list">
+<li>Copy <code>conf/secrets.sample.conf</code> to <code>conf/secrets.conf</code>
+</li>
+<li>Generate an application secret in <code>application.secret</code> (easiest way is to create a new Play app, then copy it)</li>
+<li>Set up your mail server or leave <code>smtp.mock=true</code> set in secrets.conf (you will have to look at console for output).</li>
+</ol>
+
+<p>To run with Activator:</p>
+
+<ol class="task-list">
+<li>
+<a href="http://typesafe.com/platform/getstarted">Download Activator</a> or <code>brew install typesafe-activator</code> or <code>./activator</code>
+</li>
+<li><code>activator ui</code></li>
+</ol>
+
+<p>To run natively:</p>
+
+<ol class="task-list">
+<li>Make sure you have Play 2.2.1 installed.</li>
+<li><code>play run</code></li>
+</ol>
+
+<p>Running with OAuth providers:</p>
+
+<p>Here, we need to use a callback, so we use ngrok to expose the internal service, and don't really need nginx (but it's
+a good habit to use it).</p>
+
+<ol class="task-list">
+<li>Register for any external OAuth services you want to authenticate.</li>
+<li>Put the oauth credentials into <code>secrets.conf</code>. </li>
+<li>Modify <code>play.plugins</code> to use the OAuth plugins you registered (a complete list is in <code>play.plugins.withoauth</code>).</li>
+<li>Download and install nginx (<code>brew install nginx</code> if you're on a Mac).</li>
+<li>Download and install ngrok from <a href="https://ngrok.com">https://ngrok.com</a> -- this allows OAuth callbacks to happen if need be.</li>
+<li>Start the play server (as above).</li>
+<li>Start ngrok with <code>ngrok 8080</code>.</li>
+<li>Modify the server_name in <code>conf/nginx.conf</code> to point to your ngrok URL (i.e. ei3fawekemf.ngrok.com)</li>
+<li>Copy <code>nginx.conf</code> to the nginx configuration directory with appropriate file name, i.e. /usr/local/etc/nginx/play.conf</li>
+<li>Start nginx with <code>nginx -c /usr/local/etc/nginx/play.conf</code> (to stop, use <code>nginx -s stop</code>).</li>
+<li>Go to the public URL of your application, i.e. <a href="http://ei3fawekemf.ngrok.com">http://ei3fawekemf.ngrok.com</a>
+</li>
+<li>Go to Twitter, enter the callback URL as <a href="http://ei3fawekemf.ngrok.com/authenticate/twitter">http://ei3fawekemf.ngrok.com/authenticate/twitter</a>
+</li>
+<li>Try to login with Twitter, etc.</li>
+</ol>
+
+<p>Note that you can also use HTTPS with ngrok and it will be correctly set up with a valid SSL certificate (which makes
+SSL testing much easier).  You can also examine HTTP requests in ngrok by going to <a href="http://localhost:4040/">http://localhost:4040/</a>.</p>
+</article>
