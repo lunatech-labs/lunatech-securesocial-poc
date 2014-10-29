@@ -1,4 +1,4 @@
-# SecureSocial PoC
+# SecureSocial Activator Template
 
 This is an application to see how to use Play 2/Scala, Slick and SecureSocial together.  It uses Slick 2.0.0 and an
 in memory H2 database by default.
